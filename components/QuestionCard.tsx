@@ -35,7 +35,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onSelect, 
             {/* Positioned Q. mark */}
             <span className="font-hand text-gray-400 text-3xl font-bold absolute -left-12 -top-1 transform -rotate-12 select-none">Q.</span>
             
-            <h2 className="text-2xl md:text-3xl font-black text-dark leading-relaxed">
+            {/* Font Updated here to font-hand */}
+            <h2 className="text-2xl md:text-3xl font-hand font-bold text-dark leading-relaxed">
               {question.text}
             </h2>
             <ScribbleUnderline className="w-32 text-secondary mt-2" />
@@ -59,7 +60,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onSelect, 
                        ${isSelected ? 'border-dark bg-white' : 'border-gray-300 text-gray-400 group-hover:border-dark group-hover:text-dark'}`}>
                       {String.fromCharCode(65 + index)}
                     </span>
-                    <span className="text-lg font-bold text-dark">
+                    {/* Font Updated here to font-hand */}
+                    <span className="text-lg font-hand font-bold text-dark tracking-wide">
                       {option.text}
                     </span>
                   </div>

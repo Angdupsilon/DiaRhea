@@ -9,8 +9,9 @@ export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-paper border-b-2 border-dark transition-all duration-300">
       <div className="max-w-5xl mx-auto px-4 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group relative">
-          <div className="absolute -left-2 -top-1 w-full h-full bg-secondary -z-10 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity transform -rotate-2"></div>
+        <Link to="/" className="flex items-center gap-3 group relative pl-2">
+          {/* Adjusted alignment from -left-2 to left-0 and slightly wider */}
+          <div className="absolute left-0 -top-1 w-full h-full bg-secondary -z-10 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity transform -rotate-2 scale-110"></div>
           <Logo className="transform group-hover:rotate-6 transition-transform text-dark" />
           <div className="flex flex-col">
             <span className="font-hand font-bold text-2xl text-dark tracking-wide leading-none group-hover:text-primary transition-colors">

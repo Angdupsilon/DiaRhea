@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dia Rhea 负卸空间</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Patrick+Hand&display=swap" rel="stylesheet" crossorigin="anonymous">
     <script>
       tailwind.config = {
         theme: {
@@ -18,8 +18,9 @@
               paper: '#FFFDF5', // Warm paper white
             },
             fontFamily: {
-              sans: ['"Noto Sans SC"', 'sans-serif'],
-              hand: ['"Patrick Hand"', 'cursive'],
+              sans: ['"ZCOOL KuaiLe"', '"Patrick Hand"', 'sans-serif'],
+              hand: ['"Patrick Hand"', '"ZCOOL KuaiLe"', 'cursive'],
+              mono: ['monospace'], // Keep mono for codes
             },
             boxShadow: {
               'sketch': '4px 4px 0px 0px #18181B',
@@ -39,9 +40,10 @@
         background-size: 20px 20px;
         background-position: 0 0, 10px 10px;
         color: #18181B;
+        font-family: 'ZCOOL KuaiLe', 'Patrick Hand', sans-serif;
       }
       .font-hand {
-        font-family: 'Patrick Hand', cursive;
+        font-family: 'Patrick Hand', 'ZCOOL KuaiLe', cursive;
       }
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
@@ -67,7 +69,9 @@
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
     "framer-motion": "https://esm.sh/framer-motion@^12.25.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0"
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
+    "html-to-image": "https://esm.sh/html-to-image@1.11.11",
+    "react-qr-code": "https://esm.sh/react-qr-code@2.0.15"
   }
 }
 </script>
