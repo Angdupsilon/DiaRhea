@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { TESTS } from '../constants';
 import { getPendingResult, hasVerifiedCode, saveToHistory, getHistory } from '../services/storage';
 import { ResultCard } from '../components/ResultCard';
 import { Result } from '../types';
+import { ScribbleStar, ScribbleCat } from '../components/Scribbles';
 
 export const ResultPage: React.FC = () => {
   const { testId, resultId } = useParams<{ testId: string; resultId: string }>();
@@ -11,7 +12,6 @@ export const ResultPage: React.FC = () => {
   const [resultData, setResultData] = useState<{ result: Result; score: number; maxScore: number } | null>(null);
   const [isSaved, setIsSaved] = useState(false);
 
-  // Load and calculate logic
   useEffect(() => {
     if (!testId || !resultId) {
       navigate('/');
@@ -24,12 +24,10 @@ export const ResultPage: React.FC = () => {
       return;
     }
 
-    // Check if it's a re-visit from history (check localStorage)
     const history = getHistory();
     const historyItem = history.find(h => h.resultId === resultId);
 
     if (historyItem) {
-      // Reconstruct view from history
       const result = test.results.find(r => r.name === historyItem.resultData.name);
       if (result) {
         setResultData({
@@ -42,7 +40,6 @@ export const ResultPage: React.FC = () => {
       }
     }
 
-    // Otherwise, check session storage for fresh test run
     if (!hasVerifiedCode(testId)) {
       navigate(`/verify/${testId}`);
       return;
@@ -50,18 +47,14 @@ export const ResultPage: React.FC = () => {
 
     const pending = getPendingResult(testId);
     if (!pending) {
-      // User likely refreshed after session expired or direct link access without taking test
-      // In a real app, maybe redirect to test start.
-      // For demo, we redirect home.
       navigate('/');
       return;
     }
 
-    // Logic to find result based on score
     const score = pending.score;
     const matchedResult = test.results.find(
       r => score >= r.minScore && score <= r.maxScore
-    ) || test.results[0]; // Fallback
+    ) || test.results[0];
 
     const maxScore = test.questions.reduce((acc, q) => acc + Math.max(...q.options.map(o => o.value)), 0);
 
@@ -95,17 +88,27 @@ export const ResultPage: React.FC = () => {
     setIsSaved(true);
   };
 
-  if (!resultData) return <div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>;
+  if (!resultData) return <div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-dark border-t-transparent rounded-full animate-spin"></div></div>;
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] pt-8 pb-20 px-4">
-      <ResultCard 
-        result={resultData.result}
-        score={resultData.score}
-        maxPossibleScore={resultData.maxScore}
-        onSave={handleSave}
-        isSaved={isSaved}
-      />
+    <div className="min-h-screen pt-8 pb-20 px-4 relative overflow-hidden">
+      {/* Scribble decorations */}
+      <div className="absolute top-20 left-4 opacity-10 pointer-events-none rotate-12">
+        <ScribbleStar className="w-24 h-24 text-primary" />
+      </div>
+      <div className="absolute bottom-10 right-4 opacity-10 pointer-events-none -rotate-6">
+        <ScribbleCat className="w-32 h-32 text-dark" />
+      </div>
+
+      <div className="relative z-10">
+        <ResultCard 
+          result={resultData.result}
+          score={resultData.score}
+          maxPossibleScore={resultData.maxScore}
+          onSave={handleSave}
+          isSaved={isSaved}
+        />
+      </div>
     </div>
   );
 };

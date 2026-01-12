@@ -1,6 +1,7 @@
 import React from 'react';
 import { Question, Option } from '../types';
 import { motion } from 'framer-motion';
+import { ScribbleUnderline } from './Scribbles';
 
 interface QuestionCardProps {
   question: Question;
@@ -12,39 +13,68 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onSelect, 
   return (
     <motion.div
       key={question.id}
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -50 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
+      initial={{ opacity: 0, y: 20, rotate: -1 }}
+      animate={{ opacity: 1, y: 0, rotate: 0 }}
+      exit={{ opacity: 0, y: -20, rotate: 1 }}
+      transition={{ duration: 0.3 }}
       className="w-full max-w-2xl mx-auto"
     >
-      <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 min-h-[400px] flex flex-col justify-center relative overflow-hidden">
-        {/* Decorative background element */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full -mr-10 -mt-10 blur-2xl" />
+      <div className="bg-paper border-2 border-dark shadow-sketch p-6 md:p-10 relative">
+        {/* Notebook Holes */}
+        <div className="absolute left-4 top-0 bottom-0 flex flex-col justify-between py-6 pointer-events-none opacity-20">
+             {[...Array(6)].map((_, i) => (
+               <div key={i} className="w-4 h-4 rounded-full bg-dark mb-4" />
+             ))}
+        </div>
         
-        <h2 className="text-2xl md:text-3xl font-bold text-dark mb-10 leading-relaxed relative z-10">
-          {question.text}
-        </h2>
+        {/* Vertical Margin Line */}
+        <div className="absolute left-16 top-0 bottom-0 w-0.5 bg-red-300/50" />
 
-        <div className="space-y-4 relative z-10">
-          {question.options.map((option) => (
-            <button
-              key={option.id}
-              onClick={() => onSelect(option)}
-              className={`w-full text-left p-4 md:p-5 rounded-xl border-2 transition-all duration-200 flex items-center justify-between group
-                ${selectedOptionId === option.id 
-                  ? 'border-primary bg-primary/5 shadow-md shadow-primary/10' 
-                  : 'border-transparent bg-gray-50 hover:bg-white hover:border-primary/30 hover:shadow-md'
-                }`}
-            >
-              <span className={`text-base md:text-lg font-medium ${selectedOptionId === option.id ? 'text-primary' : 'text-gray-700 group-hover:text-dark'}`}>
-                {option.text}
-              </span>
-              {selectedOptionId === option.id && (
-                <motion.div layoutId="check" className="w-2 h-2 rounded-full bg-primary" />
-              )}
-            </button>
-          ))}
+        <div className="pl-12 md:pl-16 relative">
+          <div className="mb-10">
+            <span className="font-hand text-gray-400 text-2xl font-bold absolute -left-10 -top-2">Q.</span>
+            <h2 className="text-2xl md:text-3xl font-black text-dark leading-relaxed">
+              {question.text}
+            </h2>
+            <ScribbleUnderline className="w-32 text-secondary mt-2" />
+          </div>
+
+          <div className="space-y-4">
+            {question.options.map((option, index) => {
+              const isSelected = selectedOptionId === option.id;
+              return (
+                <button
+                  key={option.id}
+                  onClick={() => onSelect(option)}
+                  className={`w-full text-left p-4 md:p-5 border-2 transition-all duration-200 flex items-center justify-between group relative
+                    ${isSelected 
+                      ? 'border-dark bg-secondary shadow-sketch-sm' 
+                      : 'border-gray-300 bg-white hover:border-dark hover:shadow-sketch-sm'
+                    }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <span className={`font-hand font-bold text-xl w-8 h-8 flex items-center justify-center border-2 rounded-full
+                       ${isSelected ? 'border-dark bg-white' : 'border-gray-300 text-gray-400 group-hover:border-dark group-hover:text-dark'}`}>
+                      {String.fromCharCode(65 + index)}
+                    </span>
+                    <span className="text-lg font-bold text-dark">
+                      {option.text}
+                    </span>
+                  </div>
+                  
+                  {isSelected && (
+                    <motion.span 
+                      initial={{ scale: 0, rotate: -20 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      className="text-2xl font-hand font-bold text-dark transform rotate-12"
+                    >
+                      Yes!
+                    </motion.span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </motion.div>
