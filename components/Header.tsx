@@ -25,10 +25,10 @@ export const Header: React.FC = () => {
         {location.pathname !== '/history' && (
           <Link 
             to="/history" 
-            className="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-dark shadow-sketch-sm hover:shadow-sketch hover:-translate-y-1 transition-all rounded-lg"
+            className="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-dark shadow-sketch-sm hover:shadow-sketch hover:-translate-y-1 transition-all rounded-lg group"
           >
             <History size={20} className="text-dark" />
-            <span className="font-hand font-bold text-lg">History</span>
+            <span className="font-bold text-lg">历史</span>
           </Link>
         )}
       </div>

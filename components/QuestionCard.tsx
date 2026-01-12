@@ -31,8 +31,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onSelect, 
         <div className="absolute left-16 top-0 bottom-0 w-0.5 bg-red-300/50" />
 
         <div className="pl-12 md:pl-16 relative">
-          <div className="mb-10">
-            <span className="font-hand text-gray-400 text-2xl font-bold absolute -left-10 -top-2">Q.</span>
+          <div className="mb-10 relative">
+            {/* Positioned Q. mark */}
+            <span className="font-hand text-gray-400 text-3xl font-bold absolute -left-12 -top-1 transform -rotate-12 select-none">Q.</span>
+            
             <h2 className="text-2xl md:text-3xl font-black text-dark leading-relaxed">
               {question.text}
             </h2>
@@ -53,7 +55,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onSelect, 
                     }`}
                 >
                   <div className="flex items-center gap-4">
-                    <span className={`font-hand font-bold text-xl w-8 h-8 flex items-center justify-center border-2 rounded-full
+                    <span className={`font-hand font-bold text-xl w-8 h-8 flex items-center justify-center border-2 rounded-full flex-shrink-0
                        ${isSelected ? 'border-dark bg-white' : 'border-gray-300 text-gray-400 group-hover:border-dark group-hover:text-dark'}`}>
                       {String.fromCharCode(65 + index)}
                     </span>
@@ -66,7 +68,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onSelect, 
                     <motion.span 
                       initial={{ scale: 0, rotate: -20 }}
                       animate={{ scale: 1, rotate: 0 }}
-                      className="text-2xl font-hand font-bold text-dark transform rotate-12"
+                      className="text-2xl font-hand font-bold text-dark transform rotate-12 flex-shrink-0 ml-2"
                     >
                       Yes!
                     </motion.span>

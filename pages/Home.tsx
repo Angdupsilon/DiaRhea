@@ -6,7 +6,7 @@ import { ScribbleStar, ScribbleUnderline } from '../components/Scribbles';
 
 export const Home: React.FC = () => {
   return (
-    <div className="min-h-screen pt-12 pb-24 px-4 overflow-hidden">
+    <div className="min-h-screen pt-12 pb-24 px-4">
       <div className="max-w-6xl mx-auto relative">
         
         {/* Decorative Scribbles in Background */}
@@ -61,8 +61,8 @@ export const Home: React.FC = () => {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#F3F4F6] px-4">
              <ScribbleStar className="w-8 h-8 text-dark" />
           </div>
-          <p className="font-hand font-bold text-xl text-dark">© {new Date().getFullYear()} Dia Rhea Unloading Space.</p>
-          <p className="text-xs font-bold uppercase tracking-widest mt-2 opacity-50">Designed for abstract souls.</p>
+          <p className="font-hand font-bold text-xl text-dark">© 2026 Dia Rhea</p>
+          <p className="text-sm font-bold mt-2 opacity-50">献给抽象的灵魂。</p>
         </footer>
       </div>
     </div>

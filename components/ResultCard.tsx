@@ -45,7 +45,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result, score, maxPossib
             <h1 className="text-4xl md:text-5xl font-black text-dark mb-3 text-center tracking-tighter">{result.name}</h1>
             
             <div className="inline-block bg-primary text-white px-4 py-1 transform -rotate-1 shadow-sm">
-                <span className="font-mono text-sm font-bold uppercase tracking-widest">Type Classification</span>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest">Type Class</span>
             </div>
             
             <p className="mt-8 text-xl font-hand text-center text-dark/80 leading-relaxed max-w-lg">
@@ -56,8 +56,8 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result, score, maxPossib
         <div className="grid md:grid-cols-2 gap-8 mb-10">
             {/* Insights */}
             <div className="bg-white border-2 border-dark p-6 shadow-sketch-sm transform -rotate-1">
-                <h3 className="font-hand font-bold text-2xl mb-4 text-primary flex items-center gap-2">
-                    Features
+                <h3 className="font-bold text-2xl mb-4 text-primary flex items-center gap-2">
+                    特征
                     <div className="h-0.5 bg-primary flex-grow"></div>
                 </h3>
                 <ul className="space-y-3">
@@ -72,8 +72,8 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result, score, maxPossib
 
             {/* Recommendations */}
             <div className="bg-white border-2 border-dark p-6 shadow-sketch-sm transform rotate-1">
-                <h3 className="font-hand font-bold text-2xl mb-4 text-secondary flex items-center gap-2">
-                    Advice
+                <h3 className="font-bold text-2xl mb-4 text-secondary flex items-center gap-2">
+                    建议
                     <div className="h-0.5 bg-secondary flex-grow"></div>
                 </h3>
                 <div className="space-y-3">
@@ -99,12 +99,12 @@ export const ResultCard: React.FC<ResultCardProps> = ({ result, score, maxPossib
             {isSaved ? (
               <>
                 <Check size={24} strokeWidth={3} />
-                <span className="font-hand">Saved to Journal!</span>
+                <span className="font-bold">已保存!</span>
               </>
             ) : (
               <>
                 <Save size={24} strokeWidth={3} />
-                <span className="font-hand">Save Result</span>
+                <span className="font-bold">保存结果</span>
               </>
             )}
           </button>

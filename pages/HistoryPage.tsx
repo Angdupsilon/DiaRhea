@@ -19,7 +19,7 @@ export const HistoryPage: React.FC = () => {
   };
 
   const handleClearAll = () => {
-    if (window.confirm('Clear all memories? Cannot be undone.')) {
+    if (window.confirm('清空所有记忆？此操作无法撤销。')) {
       clearHistory();
       setHistory([]);
     }
@@ -36,14 +36,16 @@ export const HistoryPage: React.FC = () => {
     <div className="min-h-screen pt-8 pb-20 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-10">
-          <h1 className="text-3xl font-black text-dark tracking-tight">My Collection</h1>
+          <h1 className="text-3xl font-black text-dark tracking-tight">
+            我的收藏
+          </h1>
           {history.length > 0 && (
             <button 
               onClick={handleClearAll}
-              className="font-hand font-bold text-gray-500 hover:text-red-500 flex items-center gap-2 transition-colors border-b-2 border-transparent hover:border-red-500"
+              className="font-bold text-gray-500 hover:text-red-500 flex items-center gap-2 transition-colors border-b-2 border-transparent hover:border-red-500"
             >
               <Trash2 size={18} />
-              Clear All
+              清空
             </button>
           )}
         </div>
@@ -55,13 +57,13 @@ export const HistoryPage: React.FC = () => {
             className="text-center py-24 border-2 border-dashed border-dark/20 rounded-xl"
           >
             <Ghost size={64} className="mx-auto text-dark/20 mb-6" />
-            <h2 className="text-2xl font-black text-dark/40 mb-2">Ghost Town</h2>
-            <p className="font-hand text-xl text-dark/40 mb-8">No personality fragments found.</p>
+            <h2 className="text-2xl font-black text-dark/40 mb-2">空空如也</h2>
+            <p className="font-bold text-xl text-dark/40 mb-8">暂无记录。</p>
             <Link 
               to="/" 
               className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 shadow-sketch-sm hover:shadow-sketch hover:-translate-y-1 transition-all border-2 border-dark"
             >
-              Take a Test
+              去测试
               <ArrowRight size={18} />
             </Link>
           </motion.div>
@@ -100,7 +102,7 @@ export const HistoryPage: React.FC = () => {
                       </div>
                       <div>
                         <h3 className="text-xl font-black text-dark leading-none mb-1">{entry.resultData.name}</h3>
-                        <p className="font-hand font-bold text-gray-400 text-sm">{entry.testTitle}</p>
+                        <p className="font-bold text-gray-400 text-sm">{entry.testTitle}</p>
                       </div>
                     </div>
 
@@ -118,7 +120,7 @@ export const HistoryPage: React.FC = () => {
                         to={`/results/${entry.testId}/${entry.resultId}`}
                         className="text-dark font-bold text-sm hover:text-primary flex items-center gap-1 group/link"
                       >
-                        <span className="group-hover/link:underline decoration-wavy">View</span>
+                        <span className="group-hover/link:underline decoration-wavy">查看</span>
                         <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
                       </Link>
                     </div>

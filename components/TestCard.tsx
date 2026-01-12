@@ -9,6 +9,12 @@ interface TestCardProps {
   test: Test;
 }
 
+const BADGE_MAP: Record<string, string> = {
+  'HOT': '热门',
+  'NEW': '最新',
+  'LIMITED': '限定'
+};
+
 export const TestCard: React.FC<TestCardProps> = ({ test }) => {
   const ScribbleIcon = getScribbleByEmoji(test.emoji);
   
@@ -33,10 +39,10 @@ export const TestCard: React.FC<TestCardProps> = ({ test }) => {
             <ScribbleIcon className="w-full h-full text-dark" />
           </div>
           {test.badge && (
-            <span className={`font-hand font-bold text-lg px-3 py-1 border-2 border-dark shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] -rotate-3 transform
+            <span className={`font-sans font-bold text-lg px-3 py-1 border-2 border-dark shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] -rotate-3 transform
               ${test.badge === 'HOT' ? 'bg-red-400 text-white' : 
                 test.badge === 'NEW' ? 'bg-secondary text-dark' : 'bg-primary text-white'}`}>
-              {test.badge}!
+              {BADGE_MAP[test.badge] || test.badge}!
             </span>
           )}
         </div>
@@ -55,7 +61,7 @@ export const TestCard: React.FC<TestCardProps> = ({ test }) => {
           <div className="flex items-center justify-between text-xs font-bold text-gray-500 uppercase tracking-widest border-t-2 border-dashed border-gray-300 pt-4">
             <div className="flex items-center gap-1.5">
               <HelpCircle size={16} />
-              <span>{test.questionCount} Qs</span>
+              <span>{test.questionCount} QS</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Users size={16} />
@@ -67,7 +73,7 @@ export const TestCard: React.FC<TestCardProps> = ({ test }) => {
             to={`/test/${test.id}`}
             className="w-full bg-dark text-white py-3 px-4 font-bold text-lg flex items-center justify-center gap-2 hover:bg-primary transition-colors border-2 border-transparent hover:border-dark hover:shadow-[4px_4px_0px_0px_#fff] group relative overflow-hidden"
           >
-             <span className="font-hand text-xl relative z-10">Start Test</span>
+             <span className="font-bold text-xl relative z-10 tracking-widest">开始测试</span>
              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform relative z-10" />
           </Link>
         </div>

@@ -22,10 +22,10 @@ export const CodeVerification: React.FC<CodeVerificationProps> = ({ onVerify }) 
     try {
       const isValid = await onVerify(code);
       if (!isValid) {
-        setError('Invalid Code. Try "DR8888"');
+        setError('无效激活码。试试 "DR8888"');
       }
     } catch (err) {
-      setError('Verification failed');
+      setError('验证失败');
     } finally {
       setLoading(false);
     }
@@ -46,9 +46,9 @@ export const CodeVerification: React.FC<CodeVerificationProps> = ({ onVerify }) 
         <Lock className="text-dark" size={32} />
       </div>
 
-      <h2 className="text-3xl font-black text-dark mb-2 tracking-tight">Locked!</h2>
-      <p className="font-hand text-xl text-gray-500 mb-8">
-        Enter your secret key to unlock the soul fragments.
+      <h2 className="text-3xl font-black text-dark mb-2 tracking-tight">已锁定!</h2>
+      <p className="font-bold text-gray-500 mb-8 leading-6">
+        输入激活码解锁灵魂碎片
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -60,7 +60,7 @@ export const CodeVerification: React.FC<CodeVerificationProps> = ({ onVerify }) 
               setCode(e.target.value.toUpperCase());
               setError('');
             }}
-            placeholder="CODE: DR8888"
+            placeholder="激活码: DR8888"
             className={`w-full px-4 py-3 bg-transparent font-mono text-center text-2xl tracking-widest outline-none transition-all placeholder-gray-300
               ${error ? 'text-red-500' : 'text-dark'}
             `}
@@ -90,7 +90,7 @@ export const CodeVerification: React.FC<CodeVerificationProps> = ({ onVerify }) 
             <Loader2 className="animate-spin" size={24} />
           ) : (
             <>
-              <span className="font-hand">Unlock Now</span>
+              <span className="font-bold">立即解锁</span>
               <ArrowRight size={20} />
             </>
           )}
@@ -98,13 +98,13 @@ export const CodeVerification: React.FC<CodeVerificationProps> = ({ onVerify }) 
       </form>
 
       <div className="mt-8 pt-6 border-t-2 border-dashed border-gray-300">
-        <p className="font-hand text-lg text-gray-400 mb-2">No code?</p>
+        <p className="font-bold text-gray-400 mb-2">没有激活码?</p>
         <a 
           href="#" 
           onClick={(e) => e.preventDefault()} 
           className="text-primary font-bold hover:underline decoration-wavy decoration-2 underline-offset-4"
         >
-          Get one from Rednote ➜
+          去小红书领取 ➜
         </a>
       </div>
     </motion.div>

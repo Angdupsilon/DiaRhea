@@ -56,7 +56,9 @@ export const VerifyPage: React.FC = () => {
 
       <div className="w-full max-w-lg relative z-10">
         <div className="text-center mb-8">
-          <h1 className="font-hand font-bold text-2xl text-dark/50">Step 2 / 3</h1>
+          <h1 className="font-bold text-2xl text-dark/50">
+            步骤 2 / 3
+          </h1>
         </div>
         <CodeVerification onVerify={handleVerify} />
       </div>
