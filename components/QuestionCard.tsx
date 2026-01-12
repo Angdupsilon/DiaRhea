@@ -65,16 +65,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onSelect, 
                       {option.text}
                     </span>
                   </div>
-                  
-                  {isSelected && (
-                    <motion.span 
-                      initial={{ scale: 0, rotate: -20 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      className="text-2xl font-hand font-bold text-dark transform rotate-12 flex-shrink-0 ml-2"
-                    >
-                      Yes!
-                    </motion.span>
-                  )}
                 </button>
               );
             })}
